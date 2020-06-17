@@ -40,8 +40,8 @@ TDB.bin \
 all: TDB.elf secondary-outputs
 
 # Tool invocations
-TDB.elf: $(OBJS) $(USER_OBJS) D:\jacq\Documents\Seafile\TIM\Projet\ TIM\__TBD\Software\TDB\STM32F103RBTX_FLASH.ld
-	arm-none-eabi-gcc -o "TDB.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\jacq\Documents\Seafile\TIM\Projet TIM\__TBD\Software\TDB\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TDB.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+TDB.elf: $(OBJS) $(USER_OBJS) D:\jacq\Documents\Seafile\TIM\Projet\ TIM\GitHub\TBD\Software\TDB\STM32F103RBTX_FLASH.ld
+	arm-none-eabi-gcc -o "TDB.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m3 -T"D:\jacq\Documents\Seafile\TIM\Projet TIM\GitHub\TBD\Software\TDB\STM32F103RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="TDB.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

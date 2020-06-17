@@ -59,11 +59,14 @@ static void MX_CAN_Init(void);
 static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
 /* USER CODE BEGIN PFP */
-
+static void Wiper_State(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+	enum State { Stoped =0, Working = 1, Speeding =2};
+	State wiperState;
+
 
 /* USER CODE END 0 */
 
@@ -84,6 +87,7 @@ int main(void)
 
   /* USER CODE BEGIN Init */
 
+
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -100,7 +104,7 @@ int main(void)
   MX_TIM1_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-  HAL_GPIO_WritePin(led_status_GPIO_Port, led_status_Pin, 1);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -110,6 +114,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+		HAL_GPIO_TogglePin(led_status_GPIO_Port, led_status_Pin ); // Led Idle
+		HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
@@ -378,7 +384,11 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
+static void Wiper_State(void)
+{	Static State ActualState,NextState;
+	if (ActualState == Speeding) {NextState = Stoped)}
+	else  NextState = ActualState ++;
+}
 /* USER CODE END 4 */
 
 /**
