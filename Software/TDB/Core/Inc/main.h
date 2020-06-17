@@ -50,6 +50,8 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -58,6 +60,26 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define pwm_wiper_Pin GPIO_PIN_0
+#define pwm_wiper_GPIO_Port GPIOA
+#define int_2_Pin GPIO_PIN_6
+#define int_2_GPIO_Port GPIOA
+#define control_clim_power_Pin GPIO_PIN_14
+#define control_clim_power_GPIO_Port GPIOB
+#define control_wiper_power_Pin GPIO_PIN_15
+#define control_wiper_power_GPIO_Port GPIOB
+#define led_status_Pin GPIO_PIN_9
+#define led_status_GPIO_Port GPIOC
+#define wiper_1_Pin GPIO_PIN_9
+#define wiper_1_GPIO_Port GPIOA
+#define wiper_2_Pin GPIO_PIN_10
+#define wiper_2_GPIO_Port GPIOC
+#define plus_moins_Pin GPIO_PIN_12
+#define plus_moins_GPIO_Port GPIOC
+#define int_1_Pin GPIO_PIN_5
+#define int_1_GPIO_Port GPIOB
+#define int_3_Pin GPIO_PIN_8
+#define int_3_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

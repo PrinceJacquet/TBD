@@ -1,0 +1,3 @@
+[submodule "Hard/TIM_Kicad_lib"]
+	path = Hard/TIM_Kicad_lib
+	url = git@gitlab.com:TIM-Elec/TIM_Kicad_lib.git

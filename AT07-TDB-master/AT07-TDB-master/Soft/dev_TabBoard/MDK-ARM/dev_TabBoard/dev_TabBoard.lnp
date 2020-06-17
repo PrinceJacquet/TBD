@@ -1,0 +1,24 @@
+--cpu Cortex-M3
+"dev_tabboard\startup_stm32f103xb.o"
+"dev_tabboard\main.o"
+"dev_tabboard\stm32f1xx_it.o"
+"dev_tabboard\stm32f1xx_hal_msp.o"
+"dev_tabboard\stm32f1xx_hal_gpio_ex.o"
+"dev_tabboard\stm32f1xx_hal_can.o"
+"dev_tabboard\stm32f1xx_hal.o"
+"dev_tabboard\stm32f1xx_hal_rcc.o"
+"dev_tabboard\stm32f1xx_hal_rcc_ex.o"
+"dev_tabboard\stm32f1xx_hal_gpio.o"
+"dev_tabboard\stm32f1xx_hal_dma.o"
+"dev_tabboard\stm32f1xx_hal_cortex.o"
+"dev_tabboard\stm32f1xx_hal_pwr.o"
+"dev_tabboard\stm32f1xx_hal_flash.o"
+"dev_tabboard\stm32f1xx_hal_flash_ex.o"
+"dev_tabboard\stm32f1xx_hal_exti.o"
+"dev_tabboard\stm32f1xx_hal_tim.o"
+"dev_tabboard\stm32f1xx_hal_tim_ex.o"
+"dev_tabboard\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "dev_TabBoard\dev_TabBoard.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "dev_TabBoard.map" -o dev_TabBoard\dev_TabBoard.axf

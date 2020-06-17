@@ -1,0 +1,37 @@
+* /home/torkelatgenet/Projects/AT07-TDB/Hard/AT07-TDB.cir
+
+* EESchema Netlist Version 1.1 (Spice format) creation date: fr. 02. mars 2018 kl. 11.29 +0100
+
+* To exclude a component from the Spice Netlist add [Spice_Netlist_Enabled] user FIELD set to: N
+* To reorder the component spice node sequence add [Spice_Node_Sequence] user FIELD and define sequence: 2,1,0
+
+* Sheet Name: /
+J1  Net-_J1-Pad1_ Net-_J1-Pad2_ GND +9V GND +9V GND +12V GND RJ45_CANBUS		
+C1  +3V3 GND C_Small		
+STM32F103_1  Net-_STM32F103_1-Pad1_ ? Net-_STM32F103_1-Pad3_ ? ? GND ? Pedalebutton ? ? ? ? ? Servo_PWM ? ? ? Ventilo_Enable ? ? ? ? ? ? ? LedFreinage ? ? GND ? +3V3 GND ? EsGlbutton Servo_Enable Ventilobutton ? ? ? ? ? ? ? ? ? ? ? ? ? ? GND +5V STM32-H103		
+C2  +5V GND 100n		
+P1  +5VP Net-_P1-Pad2_ Connecteur Ventilo		
+P2  Servo_PWM +5VP Net-_P2-Pad3_ CONN_01X03		
+U4  Ventilo_Enable GND Servo_Enable Net-_Q4-Pad1_ +5V Net-_Q3-Pad1_ TC4424		
+Q3  Net-_Q3-Pad1_ Net-_P1-Pad2_ GND Q_NMOS_GDS		
+Q4  Net-_Q4-Pad1_ Net-_P2-Pad3_ GND Q_NMOS_GDS		
+LedVentilo1  Net-_LedVentilo1-Pad1_ Net-_LedVentilo1-Pad2_ LED		
+LedEsGl1  Net-_LedEsGl1-Pad1_ Net-_LedEsGl1-Pad2_ LED		
+LedFreinage1  Net-_LedFreinage1-Pad1_ Net-_LedFreinage1-Pad2_ LED		
+U3  Net-_STM32F103_1-Pad3_ GND +3V3 Net-_STM32F103_1-Pad1_ +3V3 Net-_J1-Pad2_ Net-_J1-Pad1_ +3V3 SN65HVD230		
+Q1  GND LedFreinage Net-_LedVentilo1-Pad1_ GND Ventilo_Enable Net-_LedFreinage1-Pad1_ FDG1024NZ		
+Q2  GND Servo_Enable Net-_LedEsGl1-Pad1_ FDG1024NZ		
+R4  +5V Net-_LedEsGl1-Pad2_ 400		
+R2  +3V3 Pedalebutton 2.7k		
+R3  +5V Net-_LedVentilo1-Pad2_ 400		
+R1  +5V Net-_LedFreinage1-Pad2_ 400		
+U2  +15V GND +5VP GND DC/DC_DX		
+J3  GND Pedalebutton Conn_01x02		
+J2  GND +15V Conn_01x02		
+SW2  GND EsGlbutton +3V3 SW_SPDT		
+SW1  GND Ventilobutton +3V3 SW_SPDT		
+U1  +9V GND +5V L7805		
+C3  +9V GND 0.33u		
+C4  +5V GND 100n		
+
+.end

@@ -3,7 +3,7 @@
   (general
     (thickness 1.6)
     (drawings 9)
-    (tracks 232)
+    (tracks 231)
     (zones 0)
     (modules 47)
     (nets 1)
@@ -60,7 +60,7 @@
     (pad_to_mask_clearance 0.051)
     (solder_mask_min_width 0.25)
     (aux_axis_origin 0 0)
-    (visible_elements FFFFFF7F)
+    (visible_elements 7FFFFFFF)
     (pcbplotparams
       (layerselection 0x010fc_ffffffff)
       (usegerberextensions false)
@@ -4913,7 +4913,6 @@
   (segment (start 119.01 110) (end 119.01 102.8275) (width 1) (layer B.Cu) (net 0) (tstamp 5ED12F59))
   (segment (start 135.789999 93.509999) (end 134.92 94.379998) (width 1) (layer B.Cu) (net 0) (tstamp 5ED12F5C))
   (segment (start 137.06 92.66) (end 136.210001 93.509999) (width 1) (layer B.Cu) (net 0) (tstamp 5ED12F64))
-  (segment (start 119.01 110) (end 119.6525 110) (width 1) (layer B.Cu) (net 0) (tstamp 5ED12F65))
   (segment (start 136.210001 93.509999) (end 135.789999 93.509999) (width 1) (layer B.Cu) (net 0) (tstamp 5ED12F66))
   (segment (start 134.92 95.95102) (end 133.74102 97.13) (width 1) (layer B.Cu) (net 0) (tstamp 5ED12F67))
   (segment (start 128.0925 97.13) (end 126.4 95.4375) (width 1) (layer B.Cu) (net 0) (tstamp 5ED12F68))

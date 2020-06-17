@@ -1,0 +1,10 @@
+(fp_lib_table
+  (lib (name AB2_LQFP)(type KiCad)(uri "$(KIPRJMOD)/TIM_Kicad_lib/Footprints/AB2_LQFP.pretty")(options "")(descr ""))
+  (lib (name TIM_Connector)(type KiCad)(uri "$(KIPRJMOD)/TIM_Kicad_lib/Footprints/TIM_Connector.pretty")(options "")(descr ""))
+  (lib (name TIM_discreteComponents)(type KiCad)(uri "$(KIPRJMOD)/TIM_Kicad_lib/Footprints/TIM_discreteComponents.pretty")(options "")(descr ""))
+  (lib (name TIM_Logo)(type KiCad)(uri "$(KIPRJMOD)/TIM_Kicad_lib/Footprints/TIM_Logo.pretty")(options "")(descr ""))
+  (lib (name TIM_Microcontroller)(type KiCad)(uri "$(KIPRJMOD)/TIM_Kicad_lib/Footprints/TIM_Microcontroller.pretty")(options "")(descr ""))
+  (lib (name TIM_NXP)(type KiCad)(uri "$(KIPRJMOD)/TIM_Kicad_lib/Footprints/TIM_NXP.pretty")(options "")(descr ""))
+  (lib (name TIM_Other)(type KiCad)(uri "$(KIPRJMOD)/TIM_Kicad_lib/Footprints/TIM_Other.pretty")(options "")(descr ""))
+  (lib (name TIM_transistor)(type KiCad)(uri "$(KIPRJMOD)/TIM_Kicad_lib/Footprints/TIM_transistor.pretty")(options "")(descr ""))
+)

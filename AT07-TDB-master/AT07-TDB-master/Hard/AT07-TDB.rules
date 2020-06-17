@@ -1,0 +1,112 @@
+
+(rules PCB AT07-TDB
+  (snap_angle 
+    fortyfive_degree
+  )
+  (autoroute_settings
+    (fanout off)
+    (autoroute on)
+    (postroute on)
+    (vias on)
+    (via_costs 50)
+    (plane_via_costs 5)
+    (start_ripup_costs 100)
+    (start_pass_no 207)
+    (layer_rule F.Cu
+      (active on)
+      (preferred_direction vertical)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 2.3)
+    )
+    (layer_rule B.Cu
+      (active on)
+      (preferred_direction horizontal)
+      (preferred_direction_trace_costs 1.0)
+      (against_preferred_direction_trace_costs 1.8)
+    )
+  )
+  (rule
+    (width 1000.0)
+    (clear 200.2)
+    (clear 500.0 (type smd_to_turn_gap))
+    (clear 50.0 (type smd_smd))
+  )
+  (padstack "Via[0-1]_2000:800_um"
+    (shape
+      (circle F.Cu 2000.0 0.0 0.0)
+    )
+    (shape
+      (circle B.Cu 2000.0 0.0 0.0)
+    )
+    (attach off)
+  )
+  (via 
+    "Via[0-1]_2000:800_um" "Via[0-1]_2000:800_um" default
+  )
+  (via 
+    "Via[0-1]_2000:800_um-kicad_default" "Via[0-1]_2000:800_um" "kicad_default"
+  )
+  (via 
+    "Via[0-1]_2000:800_um-Power" "Via[0-1]_2000:800_um" Power
+  )
+  (via 
+    "Via[0-1]_2000:800_um-Signal" "Via[0-1]_2000:800_um" Signal
+  )
+  (via_rule
+    default "Via[0-1]_2000:800_um"
+  )
+  (via_rule
+    "kicad_default" "Via[0-1]_2000:800_um-kicad_default"
+  )
+  (via_rule
+    Power "Via[0-1]_2000:800_um-Power"
+  )
+  (via_rule
+    Signal "Via[0-1]_2000:800_um-Signal"
+  )
+  (class default
+    (clearance_class default)
+    (via_rule default)
+    (rule
+      (width 1000.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class "kicad_default"
+    "Net-(C2-Pad1)" "Net-(J1-Pad1)" "Net-(J1-Pad2)" "Net-(STM32F103_1-Pad1)" "Net-(STM32F103_1-Pad3)" "Net-(P1-Pad2)" "Net-(P2-Pad3)" "Net-(Q3-Pad1)"
+    "Net-(Q4-Pad1)"
+    (clearance_class "kicad_default")
+    (via_rule kicad_default)
+    (rule
+      (width 1000.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class Power
+    +3V3 +5V +5VP +15V +9V
+    (clearance_class Power)
+    (via_rule Power)
+    (rule
+      (width 1000.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+  (class Signal
+    GND "Servo_PWM" "Net-(LedVentilo1-Pad1)" "Ventilo_Enable" LedFreinage "Net-(LedFreinage1-Pad1)" "Servo_Enable" "Net-(LedEsGl1-Pad1)"
+    Pedalebutton "Net-(LedEsGl1-Pad2)" "Net-(LedFreinage1-Pad2)" "Net-(LedVentilo1-Pad2)" Ventilobutton EsGlbutton
+    (clearance_class Signal)
+    (via_rule Signal)
+    (rule
+      (width 500.0)
+    )
+    (circuit 
+      (use_layer F.Cu B.Cu)
+    )
+  )
+)

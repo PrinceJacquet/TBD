@@ -1,0 +1,81 @@
+EESchema-LIBRARY Version 2.4
+#encoding utf-8
+#
+# Conn_01x03_Female_Potar-TIM_Connectors_V5
+#
+DEF Conn_01x03_Female_Potar-TIM_Connectors_V5 J 0 40 Y N 1 F N
+F0 "J" 0 200 50 H V C CNN
+F1 "Conn_01x03_Female_Potar-TIM_Connectors_V5" 0 -200 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ Connector*:*_1x??_*
+$ENDFPLIST
+DRAW
+A 0 -100 20 901 -901 1 1 6 N 0 -80 0 -120
+A 0 0 20 901 -901 1 1 6 N 0 20 0 -20
+A 0 100 20 901 -901 1 1 6 N 0 120 0 80
+T 0 100 100 50 0 0 0 GND Normal 0 C C
+T 0 150 -100 50 0 0 0 Signal Normal 0 C C
+T 0 150 0 50 0 0 0 Supply Normal 0 C C
+P 2 1 1 6 -50 -100 -20 -100 N
+P 2 1 1 6 -50 0 -20 0 N
+P 2 1 1 6 -50 100 -20 100 N
+X Pin_1 1 -200 100 150 R 50 50 1 1 P
+X Pin_2 2 -200 0 150 R 50 50 1 1 P
+X Pin_3 3 -200 -100 150 R 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# Conn_01x03_Female_Servomotor-TIM_Connectors_V5
+#
+DEF Conn_01x03_Female_Servomotor-TIM_Connectors_V5 J 0 40 Y N 1 F N
+F0 "J" 0 200 50 H V C CNN
+F1 "Conn_01x03_Female_Servomotor-TIM_Connectors_V5" 0 -200 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ Connector*:*_1x??_*
+$ENDFPLIST
+DRAW
+A 0 -100 20 901 -901 1 1 6 N 0 -80 0 -120
+A 0 0 20 901 -901 1 1 6 N 0 20 0 -20
+A 0 100 20 901 -901 1 1 6 N 0 120 0 80
+T 0 100 0 50 0 0 0 +5V Normal 0 C C
+T 0 100 -100 50 0 0 0 CMD Normal 0 C C
+T 0 100 100 50 0 0 0 GND Normal 0 C C
+P 2 1 1 6 -50 -100 -20 -100 N
+P 2 1 1 6 -50 0 -20 0 N
+P 2 1 1 6 -50 100 -20 100 N
+X Pin_1 1 -200 100 150 R 50 50 1 1 P
+X Pin_2 2 -200 0 150 R 50 50 1 1 P
+X Pin_3 3 -200 -100 150 R 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# TC4424-TIM_Active_Components_V5
+#
+DEF TC4424-TIM_Active_Components_V5 U 0 20 Y Y 1 F N
+F0 "U" -300 350 50 H V L CNN
+F1 "TC4424-TIM_Active_Components_V5" 50 350 50 H V L CNN
+F2 "Package_DIP:DIP-8_W7.62mm_Socket_LongPads" 0 -300 50 H I C CNN
+F3 "" 0 -300 50 H I C CNN
+$FPLIST
+ DIP*W7.62mm*
+ SOIC*3.9x4.9mm*P1.27mm*
+ MSOP*P0.65mm*
+$ENDFPLIST
+DRAW
+S -300 -300 300 300 0 1 10 f
+X NC 1 -300 0 100 R 50 50 1 1 N N
+X IN_A 2 -400 100 100 R 50 50 1 1 I
+X GND 3 0 -400 100 U 50 50 1 1 W
+X IN_B 4 -400 -100 100 R 50 50 1 1 I
+X OUT_B 5 400 -100 100 L 50 50 1 1 O
+X V+ 6 0 400 100 D 50 50 1 1 W
+X OUT_A 7 400 100 100 L 50 50 1 1 O
+X NC 8 300 0 100 L 50 50 1 1 N N
+ENDDRAW
+ENDDEF
+#
+#End Library
