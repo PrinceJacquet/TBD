@@ -1,3 +1,0 @@
-View this project on [CADLAB.io](https://cadlab.io/project/22953). 
-
-TDB (TBD)
