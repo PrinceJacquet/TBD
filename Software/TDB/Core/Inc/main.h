@@ -68,8 +68,8 @@ void Error_Handler(void);
 #define control_clim_power_GPIO_Port GPIOB
 #define control_wiper_power_Pin GPIO_PIN_15
 #define control_wiper_power_GPIO_Port GPIOB
-#define led_status_Pin GPIO_PIN_9
-#define led_status_GPIO_Port GPIOC
+#define led_idle_Pin GPIO_PIN_9
+#define led_idle_GPIO_Port GPIOC
 #define wiper_1_Pin GPIO_PIN_9
 #define wiper_1_GPIO_Port GPIOA
 #define wiper_2_Pin GPIO_PIN_10
