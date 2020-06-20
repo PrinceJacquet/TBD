@@ -33,6 +33,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
+
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -61,13 +62,11 @@ static void MX_TIM1_Init(void);
 static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
-static void Wiper_State(void);
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-	enum State { Stoped =0, Working = 1, Speeding =2};
-	State wiperState;
 
 
 /* USER CODE END 0 */
@@ -107,9 +106,9 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
-  HAL_TIM_PWM_Start(&htim3, Channe4); // PWM Led Idle
-  HAL_TIM_PWM_Start(&htim2, Channe2); //PWM Servo Moteur | WIPER
-
+  HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4 ); // PWM Led Idle
+  HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2); //PWM Servo Moteur | WIPER
+  led_idle_DutyCycle(100); // duty cycle register
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -350,7 +349,7 @@ static void MX_TIM3_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 0;
+  sConfigOC.Pulse = 500;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim3, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
@@ -408,11 +407,11 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, control_clim_power_Pin|control_wiper_power_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pins : int_2_Pin wiper_1_Pin */
-  GPIO_InitStruct.Pin = int_2_Pin|wiper_1_Pin;
+  /*Configure GPIO pin : int_2_Pin */
+  GPIO_InitStruct.Pin = int_2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+  HAL_GPIO_Init(int_2_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : control_clim_power_Pin control_wiper_power_Pin */
   GPIO_InitStruct.Pin = control_clim_power_Pin|control_wiper_power_Pin;
@@ -421,11 +420,17 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : wiper_2_Pin */
-  GPIO_InitStruct.Pin = wiper_2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(wiper_2_GPIO_Port, &GPIO_InitStruct);
+  /*Configure GPIO pin : int_5_Pin */
+  GPIO_InitStruct.Pin = int_5_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(int_5_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : int_4_Pin */
+  GPIO_InitStruct.Pin = int_4_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(int_4_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : plus_moins_Pin */
   GPIO_InitStruct.Pin = plus_moins_Pin;
@@ -435,18 +440,14 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pins : int_1_Pin int_3_Pin */
   GPIO_InitStruct.Pin = int_1_Pin|int_3_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 
 /* USER CODE BEGIN 4 */
-static void Wiper_State(void)
-{	Static State ActualState,NextState;
-	if (ActualState == Speeding) {NextState = Stoped)}
-	else  NextState = ActualState ++;
-}
+
 /* USER CODE END 4 */
 
 /**

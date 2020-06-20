@@ -70,10 +70,10 @@ void Error_Handler(void);
 #define control_wiper_power_GPIO_Port GPIOB
 #define led_idle_Pin GPIO_PIN_9
 #define led_idle_GPIO_Port GPIOC
-#define wiper_1_Pin GPIO_PIN_9
-#define wiper_1_GPIO_Port GPIOA
-#define wiper_2_Pin GPIO_PIN_10
-#define wiper_2_GPIO_Port GPIOC
+#define int_5_Pin GPIO_PIN_9
+#define int_5_GPIO_Port GPIOA
+#define int_4_Pin GPIO_PIN_10
+#define int_4_GPIO_Port GPIOC
 #define plus_moins_Pin GPIO_PIN_12
 #define plus_moins_GPIO_Port GPIOC
 #define int_1_Pin GPIO_PIN_5
