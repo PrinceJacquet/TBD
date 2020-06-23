@@ -37,6 +37,8 @@ extern "C" {
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
+typedef enum { OFF = 0, Speed1 = 1, ON = 1, Speed2 =2} state ;
+//extern state WIPERSTATE = OFF;
 
 /* USER CODE END ET */
 
@@ -56,7 +58,10 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-
+void wiper(void);
+void powerWiper(state Wiper_state);
+state getWiperState(void);
+void setWiperState(state);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -64,6 +69,7 @@ void Error_Handler(void);
 #define pwm_wiper_GPIO_Port GPIOA
 #define int_2_Pin GPIO_PIN_6
 #define int_2_GPIO_Port GPIOA
+#define int_2_EXTI_IRQn EXTI9_5_IRQn
 #define control_clim_power_Pin GPIO_PIN_14
 #define control_clim_power_GPIO_Port GPIOB
 #define control_wiper_power_Pin GPIO_PIN_15
@@ -72,16 +78,23 @@ void Error_Handler(void);
 #define led_idle_GPIO_Port GPIOC
 #define int_5_Pin GPIO_PIN_9
 #define int_5_GPIO_Port GPIOA
+#define int_5_EXTI_IRQn EXTI9_5_IRQn
 #define int_4_Pin GPIO_PIN_10
 #define int_4_GPIO_Port GPIOC
+#define int_4_EXTI_IRQn EXTI15_10_IRQn
 #define plus_moins_Pin GPIO_PIN_12
 #define plus_moins_GPIO_Port GPIOC
+#define plus_moins_EXTI_IRQn EXTI15_10_IRQn
 #define int_1_Pin GPIO_PIN_5
 #define int_1_GPIO_Port GPIOB
+#define int_1_EXTI_IRQn EXTI9_5_IRQn
 #define int_3_Pin GPIO_PIN_8
 #define int_3_GPIO_Port GPIOB
+#define int_3_EXTI_IRQn EXTI9_5_IRQn
 /* USER CODE BEGIN Private defines */
-
+#define wiper_periode 1000
+#define led_idle_DutyCycle(p) htim3.Instance->CCR4=p
+#define SetWiperPourcentage(p) htim2.Instance->CCR1=(wiper_periode/100*p)
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

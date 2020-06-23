@@ -63,10 +63,47 @@ static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
+//void powerWiper(state Wiper_state)
+//{
+//	if(Wiper_state == ON){HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin, 1);}
+//	else if ( Wiper_state == OFF){HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin, 0);}
+//	else {HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin, 1);}
+//}
+//void wiper(void)
+//{
+//	WIPERSTATE = getWiperState();
+//	state NextState = (WIPERSTATE + 1)%3;
+//	setWiperState(NextState);
+//	if (WIPERSTATE == OFF){powerWiper(OFF);}
+//	else{powerWiper(ON);}
+//}
+//
+//state getWiperState(void){
+//	state STATE;
+//
+//	return STATE;
+//}
+//void setWiperState(state STATE)
+//{
+//	switch(STATE)
+//	{
+//		case OFF:
+//
+//			break;
+//		case Speed1:
+//			break;
+//		case Speed2:
+//			break;
+//		default:
+//	}
+//}
+
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+
 
 
 /* USER CODE END 0 */
@@ -106,9 +143,13 @@ int main(void)
   MX_TIM2_Init();
   MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
+  led_idle_DutyCycle(250); // duty cycle register
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4 ); // PWM Led Idle
-  HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_2); //PWM Servo Moteur | WIPER
-  led_idle_DutyCycle(100); // duty cycle register
+  HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin,1);
+  //htim2.Instance->CCR1=500; //
+  HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1); //PWM Servo Moteur | WIPER
+  SetWiperPourcentage(90);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -218,9 +259,9 @@ static void MX_TIM1_Init(void)
 
   /* USER CODE END TIM1_Init 1 */
   htim1.Instance = TIM1;
-  htim1.Init.Prescaler = 0;
+  htim1.Init.Prescaler = 8000-1;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 0;
+  htim1.Init.Period = 20-1;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -265,9 +306,9 @@ static void MX_TIM2_Init(void)
 
   /* USER CODE END TIM2_Init 1 */
   htim2.Instance = TIM2;
-  htim2.Init.Prescaler = 9900;
+  htim2.Init.Prescaler = 8000-1;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 40000;
+  htim2.Init.Period = 1000-1;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -293,7 +334,7 @@ static void MX_TIM2_Init(void)
   sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_HIGH;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
-  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_2) != HAL_OK)
+  if (HAL_TIM_PWM_ConfigChannel(&htim2, &sConfigOC, TIM_CHANNEL_1) != HAL_OK)
   {
     Error_Handler();
   }
@@ -409,8 +450,8 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : int_2_Pin */
   GPIO_InitStruct.Pin = int_2_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(int_2_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : control_clim_power_Pin control_wiper_power_Pin */
@@ -422,27 +463,34 @@ static void MX_GPIO_Init(void)
 
   /*Configure GPIO pin : int_5_Pin */
   GPIO_InitStruct.Pin = int_5_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(int_5_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : int_4_Pin */
   GPIO_InitStruct.Pin = int_4_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(int_4_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pin : plus_moins_Pin */
   GPIO_InitStruct.Pin = plus_moins_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(plus_moins_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : int_1_Pin int_3_Pin */
   GPIO_InitStruct.Pin = int_1_Pin|int_3_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /* EXTI interrupt init*/
+  HAL_NVIC_SetPriority(EXTI9_5_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI9_5_IRQn);
+
+  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 
 }
 

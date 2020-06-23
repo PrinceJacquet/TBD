@@ -30,7 +30,14 @@
 	* Fan On/Off
 	* Front Headlight 
 	* Back Headlight
-		
+   
+## On Hardware
+* V1
+    * CLIM switch 
+    * Wiper push boutons
+    * HeadLight Front
+	* HeadLight Back
+    * Break 
 ## How to:
 
 ### PWM 
@@ -51,8 +58,9 @@
 			* set clock division if any (CKD)
 			* set repetition if any 
     2. We set the duty cycle
-    3. We start the PWM using : HAL Functions from ST
+        * Using 
+     3. We start the PWM using : HAL Functions from ST
     
 ### Interruptions 
     * Configure pin in STM32 CUBE MX as GPIO EXTIx
-    * 
+    * Using void EXTIx_y_IRQHandler(void){[[ }]]
