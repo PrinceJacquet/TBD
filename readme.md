@@ -1,4 +1,5 @@
 # The dashboard of the car : TIM-07
+* Software used : KiCad and STM32 Cube IDE
 
 ## Support Sheet for DashBoard : Compagnon de Code de TDB
 
