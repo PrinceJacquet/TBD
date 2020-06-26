@@ -32,13 +32,12 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include <math.h>
+#include "wiper.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
 /* USER CODE BEGIN ET */
-typedef enum { OFF = 0, Speed1 = 1, ON = 1, Speed2 =2} state ;
-//extern state WIPERSTATE = OFF;
 
 /* USER CODE END ET */
 
@@ -58,10 +57,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-void wiper(void);
-void powerWiper(state Wiper_state);
-state getWiperState(void);
-void setWiperState(state);
+
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
@@ -92,9 +88,9 @@ void setWiperState(state);
 #define int_3_GPIO_Port GPIOB
 #define int_3_EXTI_IRQn EXTI9_5_IRQn
 /* USER CODE BEGIN Private defines */
-#define wiper_periode 1000
+
 #define led_idle_DutyCycle(p) htim3.Instance->CCR4=p
-#define SetWiperPourcentage(p) htim2.Instance->CCR1=(wiper_periode/100*p)
+
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus

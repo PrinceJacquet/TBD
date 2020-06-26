@@ -32,7 +32,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
- 
+ extern state WIPERSTATE;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -234,7 +234,7 @@ void CAN1_SCE_IRQHandler(void)
 void EXTI9_5_IRQHandler(void)
 {
   /* USER CODE BEGIN EXTI9_5_IRQn 0 */
-	if(HAL_GPIO_ReadPin(int_3_GPIO_Port, int_3_Pin)==0){htim2.Instance->CCR1=500;}
+	if(HAL_GPIO_ReadPin(int_3_GPIO_Port, int_3_Pin)==0){wiper();}
   /* USER CODE END EXTI9_5_IRQn 0 */
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_6);
@@ -265,7 +265,7 @@ void TIM1_BRK_IRQHandler(void)
 void TIM1_UP_IRQHandler(void)
 {
   /* USER CODE BEGIN TIM1_UP_IRQn 0 */
-
+	// htim2.Instance->CCR1= (htim2.Instance->CCR1) +100;
   /* USER CODE END TIM1_UP_IRQn 0 */
   HAL_TIM_IRQHandler(&htim1);
   /* USER CODE BEGIN TIM1_UP_IRQn 1 */

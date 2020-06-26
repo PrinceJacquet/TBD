@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "wiper.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -33,7 +33,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+	state WIPERSTATE = OFF;
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -63,46 +63,13 @@ static void MX_TIM2_Init(void);
 static void MX_TIM3_Init(void);
 /* USER CODE BEGIN PFP */
 
-//void powerWiper(state Wiper_state)
-//{
-//	if(Wiper_state == ON){HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin, 1);}
-//	else if ( Wiper_state == OFF){HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin, 0);}
-//	else {HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin, 1);}
-//}
-//void wiper(void)
-//{
-//	WIPERSTATE = getWiperState();
-//	state NextState = (WIPERSTATE + 1)%3;
-//	setWiperState(NextState);
-//	if (WIPERSTATE == OFF){powerWiper(OFF);}
-//	else{powerWiper(ON);}
-//}
-//
-//state getWiperState(void){
-//	state STATE;
-//
-//	return STATE;
-//}
-//void setWiperState(state STATE)
-//{
-//	switch(STATE)
-//	{
-//		case OFF:
-//
-//			break;
-//		case Speed1:
-//			break;
-//		case Speed2:
-//			break;
-//		default:
-//	}
-//}
+
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+	SetWiperPourcentage(50);
 
 
 
@@ -261,7 +228,7 @@ static void MX_TIM1_Init(void)
   htim1.Instance = TIM1;
   htim1.Init.Prescaler = 8000-1;
   htim1.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim1.Init.Period = 20-1;
+  htim1.Init.Period = 1000-1;
   htim1.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim1.Init.RepetitionCounter = 0;
   htim1.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
@@ -308,7 +275,7 @@ static void MX_TIM2_Init(void)
   htim2.Instance = TIM2;
   htim2.Init.Prescaler = 8000-1;
   htim2.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim2.Init.Period = 1000-1;
+  htim2.Init.Period = 20-1;
   htim2.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim2.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   if (HAL_TIM_Base_Init(&htim2) != HAL_OK)
@@ -339,7 +306,7 @@ static void MX_TIM2_Init(void)
     Error_Handler();
   }
   /* USER CODE BEGIN TIM2_Init 2 */
-
+  htim2.Init.Period = wiper_periode -1;
   /* USER CODE END TIM2_Init 2 */
   HAL_TIM_MspPostInit(&htim2);
 
