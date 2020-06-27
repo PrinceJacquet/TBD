@@ -111,9 +111,15 @@ int main(void)
   led_idle_DutyCycle(250); // duty cycle register
   HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_4 ); // PWM Led Idle
   HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin,1);
-  //htim2.Instance->CCR1=500; //
+  htim2.Instance->CCR1=500; //
   HAL_TIM_PWM_Start(&htim2,TIM_CHANNEL_1); //PWM Servo Moteur | WIPER
   SetWiperPourcentage(wiper_starting_DutyCycle_pourcentage);
+
+  /*************************************IIIIIIIII C IIIIIIIIIII*********************************************/
+  ////////////////////////////////////////////////////////////////////////////////
+  HAL_TIM_Base_Start_IT(&htim1); //<------------------------------------------- C'est laaaaaaaaaaaaaaaaaaa
+  ////////////////////////////////////////////////////////////////////////////////
+  /*********************************************************************************************************/
 
   /* USER CODE END 2 */
 
