@@ -1,3 +1,3 @@
-wiper.c:17:7:powerWiper	16	static
-wiper.c:24:6:wiper	8	static
-wiper.c:32:6:setWiperState	16	static
+wiper.c:26:7:powerWiper	16	static
+wiper.c:33:6:wiper	8	static
+wiper.c:41:6:setWiperState	16	static
