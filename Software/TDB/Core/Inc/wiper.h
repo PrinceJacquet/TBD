@@ -31,17 +31,17 @@ extern state WIPERSTATE;
 
 
 
-void wiper(void);
+
 void powerWiper(state Wiper_state);
-state getWiperState(void);
 void setWiperState(state);
 
 
-#define wiper_periode 8000
-#define wiper_full_swing_periode 1000
-#define wiper_starting_DutyCycle_pourcentage 2.5
-#define wiper_ending_DutyCycle_pourcentage 12.5
-#define SetWiperPourcentage(p)  htim2.Instance->CCR1=(wiper_periode*p/100)
+#define wiper_period 2000
+#define wiper_full_speed_swing_period 1500
+#define wiper_half_speed_swing_period 850
+#define wiper_starting_DutyCycle_pourcentage 5
+#define wiper_ending_DutyCycle_pourcentage 10
+#define SetWiperPourcentage(p)  htim2.Instance->CCR1=(wiper_period*p/100)
 
 
 #endif

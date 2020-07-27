@@ -25,33 +25,31 @@ extern DMA_HandleTypeDef hdma_memtomem_dma1_channel1;
 
  void powerWiper(state Wiper_state)
 {
-	if(Wiper_state == ON){HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin, 1);}
-	else if ( Wiper_state == OFF){HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin, 0);SetWiperPourcentage(0);}
+	if ( Wiper_state == OFF){HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin, 0);SetWiperPourcentage(0);}
 	else {HAL_GPIO_WritePin(control_wiper_power_GPIO_Port, control_wiper_power_Pin, 1);}
 }
 
-void wiper(void)
-{
-	WIPERSTATE = (WIPERSTATE + 1)%3;
-	setWiperState(WIPERSTATE);
-	if (WIPERSTATE == OFF){powerWiper(OFF);}
-	else{powerWiper(ON);}
-}
+
 
 void setWiperState(state STATE) //Control the period of TIM_1 to change the speed incrementation of DC of TIM2
 {
 	switch(STATE)
 	{
 		case OFF:
-			powerWiper(OFF);
+			powerWiper(STATE);
 			break;
-//set tim 1 period so it update tim2 pwm DC :
+			//set tim 1 period so it update tim2 pwm DC :
 		case Speed1:
-			SetWiperPourcentage(wiper_starting_DutyCycle_pourcentage);
-			//htim1.Init.Period = 1500-1;
+			//SetWiperPourcentage(wiper_starting_DutyCycle_pourcentage);
+			powerWiper(ON);
+			htim1.Instance->ARR= wiper_full_speed_swing_period;
+
+
 			break;
 		case Speed2:
-			SetWiperPourcentage(wiper_ending_DutyCycle_pourcentage);
+			//SetWiperPourcentage(wiper_ending_DutyCycle_pourcentage);
+			powerWiper(ON);
+			htim1.Instance->ARR= wiper_half_speed_swing_period;
 			break;
 		default:
 			powerWiper(OFF);
